@@ -1,21 +1,23 @@
-idList = []
+from collections import defaultdict
+muteDict = defaultdict(list)
 cancer = input(">>>what cancer type?\n>>>")
-infilename = cancer + 'mutations.txt'
+infilename = cancer + '_mutations.txt'
 outfilename = cancer + 'mute_Count.txt'
 with open(infilename, 'r') as infile:
-    with open(outfilename, 'a') as outfile:
-        count = 0
-        for line in infile.readlines():
+    count = 0
+    for line in infile.readlines():
+        if line.startswith('STUDY_ID'):
+            continue
+        else:
             line =  line.split()
             mute = line[2]
             sample = line[1]
-            if sample in idList:
-                continue
             if mute == 'NA':
                 continue
-            if mute == 'APEX2':
-                continue
             else:
-                idList.append(sample)
-                count += 1
-            outfile.write(mute + '\n' + str(count))
+                muteDict[(sample,mute)] = []
+with open(outfilename, 'a') as outfile:
+    for k,v in sorted(muteDict.items()):
+        count += 1
+        muteDict[k].append(count)
+        outfile.write(k[0] + '\t' + k[1] + '\t' + str(v[0]) + '\n')
