@@ -8,14 +8,6 @@ def rename_func():
             first_name = os.path.splitext(file)[0]
             extension1 = os.path.splitext(file)[1]
             dir_name =  os.path.basename(root)
-            if extension1.endswith('.py'):
-                continue
-            if first_name.startswith("barcodes"):
-                continue
-            if extension1.endswith(".sh"):
-                continue
-            if first_name.startswith("gdc"):
-                continue
             else:
                 os.rename(root+"/"+file,root+"/"+dir_name+file_name+extension1)
 	

@@ -1,5 +1,5 @@
 ---
-title: "Barcodes"
+title: "BarcodesConversion"
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +21,7 @@ library(TCGAutils)
 ```
 
 ```{r}
-#Barcodes = UUIDtoBarcode(UUIDS, id_type = "file_id", end_point = "sample")
+Barcodes = UUIDtoBarcode(UUIDS, id_type = "file_id", end_point = "sample")
 write.table(Barcodes, file = "path/to/FPKM/barcodes.txt", sep="\t", row.names = FALSE)
 
 ```

@@ -9,92 +9,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
-Breastmatch = read.table("path/to/cancer/FPKM/cancer_protein_ForBoxPlots.txt", header = FALSE, sep = '\t')
+CancerTypematch = read.table("path/to/cancer/FPKM/MultGeneExpParser_out.txt", header = FALSE, sep = '\t')
 
-Kidneymatch = read.table("path/to/cancer/FPKM/cancer_protein_ForBoxPlots.txt", header = FALSE, sep = '\t')
 
-Livermatch = read.table("path/to/cancer/FPKM/cancer_protein_ForBoxPlots.txt", header = FALSE, sep = '\t')
-
-Lungmatch = read.table("path/to/cancer/FPKM/cancer_protein_ForBoxPlots.txt", header = FALSE, sep = '\t')
-
-Uterusmatch = read.table("path/to/cancer/FPKM/cancer_protein_ForBoxPlots.txt", header = FALSE, sep = '\t')
-
-Prostatematch = read.table("path/to/cancer/FPKM/cancer_protein_ForBoxPlots.txt", header = FALSE, sep = '\t')
 
 ```
 
 ```{r}
 
-breast_n = Breastmatch$V3
-breast_t = Breastmatch$V5
-breast.x = seq(1, by = .5, length.out = 2)
-boxplot(breast_n, breast_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Tissue Type", main = "Breast", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = breast.x)
+cancer_n = CancerTypematch$V3
+cancer_t = CancerTypematch$V5
+cancer.x = seq(1, by = .5, length.out = 2)
+boxplot(cancer_n, cancer_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Cancer Type", main = "Breast", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = breast.x)
 t.test(breast_n, breast_t, paired = TRUE, alternative = "two.sided")
-
-kidney_n = Kidneymatch$V3
-kidney_t = Kidneymatch$V5
-kidney.x = seq(1, by = .5, length.out = 2)
-boxplot(kidney_n, kidney_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Tissue Type", main = "Kidney", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = kidney.x)
-t.test(kidney_n, kidney_t, paired = TRUE, alternative = "two.sided")
-
-liver_n = Livermatch$V3
-liver_t = Livermatch$V5
-liver.x = seq(1, by = .5, length.out = 2)
-boxplot(liver_n, liver_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Tissue Type", main = "Liver", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = liver.x)
-t.test(liver_n, liver_t, paired = TRUE, alternative = "two.sided")
-
-lung_n = Lungmatch$V3
-lung_t = Lungmatch$V5
-lung.x = seq(1, by = .5, length.out = 2)
-boxplot(lung_n, lung_t,col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Tissue Type", main = "Lung",pars = list(boxwex = .25, staplewex = .25), at = lung.x)
-t.test(lung_n, lung_t, paired = TRUE, alternative = "two.sided")
-
-uterus_n = Uterusmatch$V3
-uterus_t = Uterusmatch$V5
-uterus.x = seq(1, by = .5, length.out = 2)
-boxplot(uterus_n, uterus_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Tissue Type", main = "Uterus", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = uterus.x)
-t.test(uterus_n, uterus_t, paired = TRUE, alternative = "two.sided")
-
-prostate_n = Prostatematch$V3
-prostate_t = Prostatematch$V5
-prostate.x = seq(1, by = .5, length.out = 2)
-boxplot(prostate_n, prostate_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Tissue Type", main = "Prostate", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = prostate.x)
-t.test(prostate_n, prostate_t, paired = TRUE, alternative = "two.sided")
-
-
-
-
 ```
 
 
 
 ```{r}
-mean(breast_n)
-sd(breast_n)
-mean(breast_t)
-sd(breast_t)
-
-mean(kidney_n)
-sd(kidney_n)
-mean(kidney_t)
-sd(kidney_t)
-
-mean(liver_n)
-sd(liver_n)
-mean(liver_t)
-sd(liver_t)
-
-mean(lung_n)
-sd(lung_n)
-mean(lung_t)
-sd(lung_t)
-
-mean(prostate_n)
-sd(prostate_n)
-mean(prostate_t)
-sd(prostate_t)
-
-mean(uterus_n)
-sd(uterus_n)
-mean(uterus_t)
-sd(uterus_t)
+mean(cancer_n)
+sd(cancer_n)
+mean(cancer_t)
+sd(cancer_t)
+```

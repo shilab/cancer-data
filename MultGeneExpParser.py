@@ -41,7 +41,6 @@ for filename in os.listdir('.'):
                 continue
             else:
                 with open(outfile_name, 'a') as outfile:
-                   # outfile.write('ID\tNcode\tNexp\tTcode\tTexp\n')
                     outfile.write('\n' + na + '\t' + snorm + '\t' + nexp + '\t' + stum + '\t' + texp ) 
                     
                     
