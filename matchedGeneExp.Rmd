@@ -1,0 +1,34 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+CancerTypematch = read.table("path/to/cancer/FPKM/MultGeneExpParser_out.txt", header = FALSE, sep = '\t')
+
+
+
+```
+
+```{r}
+
+cancer_n = CancerTypematch$V3
+cancer_t = CancerTypematch$V5
+cancer.x = seq(1, by = .5, length.out = 2)
+boxplot(cancer_n, cancer_t, col = c("blue", "red"), names = c("normal", "tumor"), ylab = "FPKM", xlab = "Cancer Type", main = "Breast", pars = list(boxwex = .25, at = 1:3 - .2, staplewex = .25), at = breast.x)
+t.test(breast_n, breast_t, paired = TRUE, alternative = "two.sided")
+```
+
+
+
+```{r}
+mean(cancer_n)
+sd(cancer_n)
+mean(cancer_t)
+sd(cancer_t)
+```

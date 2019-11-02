@@ -1,0 +1,25 @@
+---
+title: "StudyOneCbioAlterations"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+library(reshape2)
+
+d = read_excel('path/to/cBiodata/cna_info/file.xlsx')
+d1 = melt(d, id.vars = 'Cancer')
+d1
+```
+
+```{r}
+library(ggplot2)
+require(scales)
+ggplot(d1, aes(x = Cancer, y = value, fill = variable)) + 
+  geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + scale_y_continuous(labels = percent) + ylab('Frequency') + labs(fill = 'Event')
+```
+
+

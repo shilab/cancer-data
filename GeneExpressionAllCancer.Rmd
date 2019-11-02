@@ -1,0 +1,40 @@
+---
+title: "AllCancer_P.1"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+           
+
+```{r, echo = FALSE}
+library(reshape)
+library(maditr)
+#1
+CancerType = read.delim('path/to/CancerType/FPKM/NewTumParser_out.txt', header = FALSE, sep = '\t' )
+names(CancerType) = c("id", "gene", "exp")
+CancerType = dcast(CancerType, id ~ gene, value.var='exp')
+CancerType = log(CancerType[,c(2:15)])
+
+```
+
+
+```{r, echo = FALSE}
+
+library(ggplot2)
+library(ggpubr)
+library(dplyr)
+library(tibble)
+library(tidyr)
+
+plotGene1 = function(the_vars){
+  t = deparse(substitute(the_vars))
+  ggscatter(the_vars, x= 'Gene1', y = 'Gene2', title = t, shape = 21, color = 'azure4', fill = 'lightcoral', size =2, add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method =  'pearson', ggtheme = theme_gray()) + xlab("Gene1") + ylab("Gene2")
+}
+
+CancerTypePlotsGene1 = plotGene1(CancerType)
+CancerTypePlotsGene1
+```
+
+
